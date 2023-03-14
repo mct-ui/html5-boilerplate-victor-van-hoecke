@@ -7,6 +7,36 @@
   @return map-get(map-get($palettes, $palette), $color);
 }
 
+//
+// Media Query mixin
+// @include mq(#point, #query1, #query2);
+//
+
+@mixin mq($breakpoint, $query1: min, $query2: width) {
+  $query: map-get($breakpoints, $breakpoint);
+  
+  @if $query != null {
+  @media (#{$query1}-#{$query2}: #{$query}) {
+  @content;
+  }
+  } @else {
+  @media (#{$query1}-#{$query2}: $breakpoint) {
+  @content;
+  }
+  }
+  }
+  // ---
+  // Settings: Breakpoints
+  // ---
+  
+  $breakpoints: (
+  bp1: calc(577 / 16 * 1em),
+  bp2: calc(769 / 16 * 1em),
+  bp3: calc(993 / 16 * 1em),
+  bp4: calc(1201 / 16 * 1em),
+  bp5: calc(1401 / 16 * 1em),
+  ) !default;
+
 /*---------------------------------------/*
  # SETTINGS
 /*---------------------------------------*/
@@ -184,6 +214,15 @@ h1 {
   font-weight: 700;
   line-height: calc($baseline *4);
   margin-bottom: $space-m;
+
+  @include mq(bp1){
+    font-size:$ms9;
+    line-height: calc($baseline*6);
+  }
+  @include mq(bp2){
+    font-size:$ms11;
+    line-height: calc($baseline*8);
+  }
 }
 
 h2 {
@@ -253,15 +292,16 @@ hr {
 }
 
 a {
+  color:$color-primary;
+  transition: .1s ease-in-out;
+}
+
+a:visited {
   color:$color-primary
 }
 
 a:hover {
   color:$color-primary-light
-}
-
-a:visited {
-  color:$color-primary
 }
 
 a:active {
