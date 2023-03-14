@@ -24,7 +24,7 @@
   @content;
   }
   }
-  }
+}
   // ---
   // Settings: Breakpoints
   // ---
@@ -319,6 +319,16 @@ a:active {
 */
 
 .o-row {
+  padding: $space-m $space-m 0;
+  display:flow-root;
+}
+.o-row--primary{
+  background-color: $color-primary;
+  color:white;
+}
+.o-row--dark{
+  background-color: get-color(color-gray,900 );
+  color: white;
 }
 
 /*
@@ -328,6 +338,10 @@ a:active {
 */
 
 .o-container {
+  max-width: 50rem;
+  margin: 0 auto;
+  // margin-left: auto;
+  // margin-right: auto;
 }
 
 /*
